@@ -1,0 +1,8 @@
+{
+  "name": "English",
+  "locale": "en",
+  
+  "index.h1": "Hello!",
+  "index.lang.label": "Select your language",
+  "index.lang.info": "The selected language is {lang}."
+}

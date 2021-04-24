@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { IntlProvider } from 'react-intl';
+import { Provider } from 'react-redux';
+
+import en from './lang/en.json';
+import es from './lang/es.json';
+
 import App from './App';
+
+import store from './store/store';
 import reportWebVitals from './reportWebVitals';
+
+const translations = (() => {
+  switch ('en') {
+    // case 'es': return es;
+    case 'en':
+    default: return en;
+  }
+})();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <IntlProvider locale={navigator.language.split('-')[0]} messages={translations}>
+        <App />
+      </IntlProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

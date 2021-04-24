@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useIntl } from "react-intl";
+
+import languages from './lang/languages';
 
 function App() {
+  const { formatMessage, locale } = useIntl();
+
+  const indexTranslations = {
+    "index.h1": formatMessage({ id: "index.h1" }),
+    "index.lang.label": formatMessage({ id: "index.lang.label" }),
+    "index.lang.info": formatMessage({ id: "index.lang.info" }, { lang: locale }),
+  }
+  console.log(`locale`, locale)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{indexTranslations["index.h1"]}</h1>
+      <label>{indexTranslations["index.lang.label"]}</label>
+      <select name='language'>
+        {languages.map((language, index) => {
+          return <option key={`language-${index}`} value={language.value}>{language.name}</option>
+        })}
+      </select>
+      <p>{indexTranslations["index.lang.info"]}</p>
     </div>
   );
+
 }
 
 export default App;
