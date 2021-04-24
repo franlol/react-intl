@@ -10,7 +10,7 @@ const appReducer = (state: TAppState = appState, action: TAction<EAppActionTypes
     case EAppActionTypes.APP_LOCALE_UPDATE:
       return {
         ...state,
-        payload
+        locale: payload.locale
       }
 
     default: return state;
